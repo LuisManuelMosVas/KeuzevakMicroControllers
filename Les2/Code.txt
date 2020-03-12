@@ -1,0 +1,13 @@
+Code van het project voor beide slave en master
+const int LED = 3;
+
+void setup() {
+    pinMode (LED, OUTPUT);
+}
+
+void loop() {
+    digitalWrite (LED, HIGH);
+    delay (750);
+    digitalWrite (LED, LOW);
+    delay (1000);
+}
