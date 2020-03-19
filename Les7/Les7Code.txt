@@ -1,0 +1,32 @@
+
+/*	This is a default program--
+	Use File->Load Prog to load a different program
+*/
+
+int buttonS = 0;
+int button = 2;
+void setup()
+{
+	Serial.begin(9600);
+	pinMode(02,INPUT);
+	pinMode(08,OUTPUT);
+	pinMode(10, OUTPUT);
+}
+
+void loop()
+{
+	buttonS = digitalRead(02);
+	
+	if (buttonS == HIGH)
+	{	digitalWrite(08, HIGH);}
+	else{	digitalWrite(08, LOW);}
+	
+	button = digitalRead(03);
+	
+	if (button == HIGH)
+	{	digitalWrite(10, HIGH);}
+	else
+	{	digitalWrite(10, LOW);}
+	delay(10);
+	
+}
