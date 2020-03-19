@@ -1,0 +1,19 @@
+
+/*	This is a default program--
+	Use File->Load Prog to load a different program
+*/
+
+int ledpin=8;// hier woart da pin gezet
+
+void setup()
+{
+	pinMode(ledpin, OUTPUT);// Hia woart da pin gezet alsoutput
+}
+
+void loop()
+{
+	digitalWrite(ledpin, HIGH);//  Funktie led aaaaaaaaaan
+	delay(1500);// DELAY 1.5 sec
+	digitalWrite(ledpin, LOW);// Funktie led uuuuuuit
+	delay(1500);//D-LAY 1944
+}
