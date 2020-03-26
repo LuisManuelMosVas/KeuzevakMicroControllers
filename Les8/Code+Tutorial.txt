@@ -1,0 +1,124 @@
+
+/*	This is a default program--
+	Use File->Load Prog to load a different program
+
+
+
+TUTORIAL
+
+-----------------------------------------------------------
+KLIK EERST PUSH BUTTON (02) ZODAT HET BEGINT.
+
+DAN KLIK OP PUSH BUTTON (06) ZODAT HET SNELLER GAAT.
+
+KLIK OP PUSH BUTTON (05) ZODAT HET SLOOMER GAAT.
+
+KLIK  OP PUSH BUTTON (11) VOOR DE RESET.
+
+* LET OP PUSH BUTTON (02) MOET AAN BLIJVEN.
+ ALLEEN PUSH BUTTON(02) EN EEN ANDER MAG AAN
+ BLIJVEN ALS ER MEER DAN 2 AAN ZIJN AAN ZIJN WERKT HET NIET.
+
+-----------------------------------------------------------
+TUTORIAL UIT
+*/
+#include <Servo.h>
+Servo myservo;
+
+int pos=0;
+int speed=90;
+#define BEGIN 2
+#define RESET 11
+#define PLUS  6
+#define MIN 5
+void setup()
+{
+	
+	Serial.begin(9600);
+	myservo.attach(9);
+	
+	pinMode(BEGIN,INPUT);
+	pinMode(RESET,INPUT);
+	pinMode(PLUS,INPUT_PULLUP);
+	pinMode(MIN,INPUT_PULLUP);
+}
+
+void loop()
+{
+	
+	
+	{	while(digitalRead(BEGIN) ==HIGH){
+			while(digitalRead(RESET) == HIGH){
+				
+				if (pos > 90 && speed <= 180) {
+					speed = 90;
+					if(speed == 90){
+						for
+							(pos= 0; pos<=100; pos+=speed)
+						{	myservo.write(pos);
+							delay(50);
+						}
+					}else{
+						
+						Serial.print(speed);   // print the speed
+						
+					}
+				}
+			}
+			
+			while(digitalRead(PLUS) == HIGH){
+				
+				if (speed >= 90 && speed <= 180) {
+					speed = speed+1;
+					for
+						(pos= 0; pos<=130; pos+=speed)
+					{	myservo.write(pos);
+						delay(50);
+					}
+					
+					
+					if(speed > 180){
+						speed = 90;
+						
+						pos=90;
+					}else{
+						
+						Serial.print(speed);   // print the speed
+						
+					}
+				}
+			}
+			while(digitalRead(MIN) == HIGH){
+				
+				if (speed >= 1 && pos <=999) {
+					speed = speed-1;
+					for
+						(pos= 0; pos<=130; pos+=speed)
+					{	myservo.write(pos);
+						delay(50);
+					}
+					
+					
+					if(speed > 999){
+						speed = 90;
+						pos=1;
+						
+					}else{
+						
+						Serial.print(speed);   // print the speed
+						
+					}
+				}
+			}
+			for
+				(pos= 0; pos<=140; pos+=speed)
+			{	myservo.write(pos);
+				delay(30);
+			}
+		}
+	}
+	
+}
+
+
+
