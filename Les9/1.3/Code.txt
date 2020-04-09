@@ -1,0 +1,390 @@
+int inByte = 0; 
+const int ledPin = 10;
+const int time_base = 100; 
+const int dash = 5*time_base; 
+int led12 = 12;      
+int led6 = 6; 
+int audio8= 8;
+int note = 1200; 
+int dotLen = 100; 
+int dashLen = dotLen * 5;    
+int Paus = dotLen;  
+int Spaces = dotLen * 5;     
+int wordPause = dotLen *7;
+void MorseDot()
+{	digitalWrite(led12, HIGH);  	
+	digitalWrite(led6, HIGH); 
+	Serial.println(".");
+	
+	delay(dotLen);             	
+}
+
+void MorseDash()
+
+{	
+	
+	digitalWrite(led12, HIGH);  	
+	digitalWrite(led6, HIGH);
+	tone(audio8, note, dashLen);
+	tone(audio8, note, dotLen);
+	delay(dashLen);               
+}
+void LightsOff(int delayTime)
+{	digitalWrite(led12, LOW);    		
+	digitalWrite(led6, LOW);
+	
+	noTone(audio8);	    
+	delay(delayTime);           
+}
+void setup() {
+	
+	
+	Serial.begin(9600);
+	pinMode(ledPin,OUTPUT);} 
+
+void loop() {
+	
+	
+	
+	if (Serial.available() > 0){ 
+		inByte = Serial.read();}
+	
+	
+	if (inByte == 'a'){
+		Serial.println(".-");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);} 
+	
+	// Morse code for b (dash dot dot dot)
+	if (inByte == 'b'){
+		Serial.println("-...");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for c (dash dot dash dot)
+	if (inByte == 'c'){
+		Serial.println("-.-.");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for d (dash dot dot)
+	if (inByte == 'd'){
+		Serial.println("-..");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	//Morse code for e (dot)
+	if (inByte == 'e') {
+		Serial.println(".");
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for f (dot dot dash dot)
+	if (inByte == 'f'){
+		Serial.println("..-.");
+		MorseDot();
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		MorseDash();
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		digitalWrite(ledPin,HIGH);
+		delay(dash);
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		MorseDot();
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		digitalWrite(ledPin,LOW);
+		delay(5*time_base);}
+	
+	// Morse code for g (dash dash dot)
+	if (inByte == 'g'){
+		Serial.println("--.");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for h (dot dot dot dot)
+	if (inByte == 'h'){
+		Serial.println(".....");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for i (dot dot)
+	if (inByte == 'i'){
+		Serial.println("..");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for j (dot dash dash dash)
+	if (inByte == 'j'){
+		Serial.println(".---");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for k (dash dot dash)
+	if (inByte == 'k'){
+		Serial.println("-.-");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for l (dot dash dot dot)
+	if (inByte == 'l'){
+		Serial.println(".-..");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for m (dash dash)
+	if (inByte == 'm'){
+		Serial.println("--");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for n (dash dot)
+	if (inByte == 'n'){
+		Serial.println("-.");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for o (dash dash dash)
+	if (inByte == 'o'){
+		Serial.println("---");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for p (dot dash dash dot)
+	if (inByte == 'p'){
+		Serial.println(".--.");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for q (dash dash dot dash)
+	if (inByte == 'q'){
+		Serial.println("--.-");
+		MorseDash();
+		digitalWrite(ledPin,HIGH);
+		delay(dash);
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		MorseDash();
+		digitalWrite(ledPin,HIGH);
+		delay(dash);
+		
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		MorseDot();
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		digitalWrite(ledPin,HIGH);
+		delay(dash);
+		MorseDash();
+		digitalWrite(ledPin,LOW);
+		delay(5*time_base);}
+	
+	// Morse code for r (dot dash dot)
+	if (inByte == 'r'){
+		Serial.println(".-.");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for s (dot dot dot)
+	if (inByte == 's'){
+		Serial.println("...");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for t (dash)
+	if (inByte =='t'){
+		Serial.println("-");
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for u (dot dot dash)
+	if (inByte =='u'){
+		Serial.println("..-");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for v (dot dot dot dash)
+	if (inByte == 'v'){
+		Serial.println("...-");
+		MorseDot();
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		digitalWrite(ledPin,LOW);
+		MorseDot();
+		delay(time_base);
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		MorseDot();
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		digitalWrite(ledPin,HIGH);
+		delay(time_base);
+		digitalWrite(ledPin,LOW);
+		delay(time_base);
+		MorseDash();
+		digitalWrite(ledPin,HIGH);
+		delay(dash);
+		digitalWrite(ledPin,LOW);
+		delay(5*time_base);}
+	
+	// Morse code for w (dot dash dash)
+	if (inByte == 'w'){
+		Serial.println(".--");
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for x (dash dot dot dash)
+	if (inByte == 'x'){
+		Serial.println("-..-");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for y (dash dot dash dash)
+	if (inByte == 'y'){
+		Serial.println("-.--");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		delay(dash);
+		MorseDash();
+		digitalWrite(ledPin,LOW);
+		delay(5*time_base);}
+	
+	
+	// Morse code for z (dash dash dot dot)
+	if (inByte == 'z'){
+		Serial.println("--..");
+		MorseDash();
+		LightsOff(Paus);
+		MorseDash();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		MorseDot();
+		LightsOff(Paus);
+		delay(5*time_base);}
+	
+	// Morse code for un space (7 dots)
+	if (inByte == ' '){
+		digitalWrite(ledPin,LOW);
+		delay(7*time_base);}
+	
+	
+	
+}

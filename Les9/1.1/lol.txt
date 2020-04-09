@@ -1,0 +1,35 @@
+int inByte = 0; 
+const int ledPin = 10;
+const int time_base = 100; 
+const int dash = 3*time_base; 
+int led12 = 12;      
+int led6 = 6; 
+int audio8 =8;
+int note = 1200; 
+int dotLen = 100; 
+int dashLen = dotLen * 3;    
+int elemPause = dotLen;  
+int Spaces = dotLen * 3;     
+int wordPause = dotLen *7;
+void MorseDot()
+{
+	digitalWrite(led12, HIGH);  	
+	digitalWrite(led6, HIGH); 
+	tone(audio8, note, dotLen);	
+	delay(dotLen);             	
+}
+
+void MorseDash()
+{
+	digitalWrite(led12, HIGH);  	
+	digitalWrite(led6, HIGH);
+	tone(audio8, note, dashLen);	
+	delay(dashLen);               
+}
+void LightsOff(int delayTime)
+{
+	digitalWrite(led12, LOW);    		
+	digitalWrite(led6, LOW);
+	noTone(audio8);	       	   
+	delay(delayTime);           
+}
